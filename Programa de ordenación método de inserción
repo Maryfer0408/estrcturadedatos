@@ -1,0 +1,45 @@
+#include <iostream>
+
+void insertionSort(int arr[], int n, bool ascending) {
+    for (int i = 1; i < n; ++i) {
+        int key = arr[i];
+        int j = i - 1;
+
+    
+        while (j >= 0 && ((ascending && arr[j] > key) || (!ascending && arr[j] < key))) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++)
+        std::cout << arr[i] << " ";
+    std::cout << std::endl;
+}
+
+int main() {
+    const int size = 10;
+    int arr[size];
+
+
+    std::cout << "Ingrese " << size << " valores enteros separados por espacio: ";
+    for (int i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+    }
+
+    char order;
+    std::cout << "Ingrese 'a' para orden ascendente o 'd' para orden descendente: ";
+    std::cin >> order;
+
+    bool ascending = (order == 'a');
+    
+    insertionSort(arr, size, ascending);
+
+    std::cout << "Arreglo ordenado en orden " << (ascending ? "ascendente" : "descendente") << ": ";
+    printArray(arr, size);
+
+    return 0;
+}
